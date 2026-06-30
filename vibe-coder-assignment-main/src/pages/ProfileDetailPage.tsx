@@ -19,16 +19,33 @@ export function ProfileDetailPage() {
   const [profileData, setProfileData] = useState<ProfileDetailResponse | null>(
     null
   );
-  const [loaded, setLoaded] = useState(false);
+  const [loadedUsername, setLoadedUsername] = useState<string | null>(null);
 
   useEffect(() => {
     if (!username) return;
 
-    loadProfileByUsername(username).then((data) => {
-      setProfileData(data);
-      setLoaded(true);
-    });
+    let cancelled = false;
+
+    loadProfileByUsername(username)
+      .then((data) => {
+        if (!cancelled) {
+          setProfileData(data);
+          setLoadedUsername(username);
+        }
+      })
+      .catch(() => {
+        if (!cancelled) {
+          setProfileData(null);
+          setLoadedUsername(username);
+        }
+      });
+
+    return () => {
+      cancelled = true;
+    };
   }, [username]);
+
+  const isReady = loadedUsername === username;
 
   if (!username) {
     return (
@@ -39,7 +56,7 @@ export function ProfileDetailPage() {
     );
   }
 
-  if (!loaded) {
+  if (!isReady) {
     return (
       <Layout title={`@${username}`}>
         <p className="text-gray-400">Loading...</p>
@@ -71,6 +88,7 @@ export function ProfileDetailPage() {
       <div className="flex gap-6 items-start text-left max-w-2xl mx-auto">
         <img
           src={user.picture}
+          alt={`${user.fullname} profile`}
           className="w-24 h-24 rounded-full border"
         />
         <div className="flex-1">
@@ -79,7 +97,9 @@ export function ProfileDetailPage() {
             <VerifiedBadge verified={user.is_verified} />
           </h2>
           <p className="text-gray-600">{user.fullname}</p>
-          <p className="text-xs text-gray-400 mt-1">Platform: {platform}</p>
+          <p className="text-xs text-gray-400 mt-1">
+            Platform: {user.type || platform}
+          </p>
 
           {user.description && (
             <p className="mt-3 text-sm text-gray-700">{user.description}</p>
@@ -95,9 +115,7 @@ export function ProfileDetailPage() {
             <div className="border p-2 rounded">
               <div className="text-gray-500">Engagement Rate</div>
               <div className="font-semibold">
-                {user.engagement_rate !== undefined
-                  ? (user.engagement_rate * 10000).toFixed(2) + "%"
-                  : "N/A"}
+                {formatEngagementRate(user.engagement_rate)}
               </div>
             </div>
             {user.posts_count !== undefined && (
@@ -132,7 +150,7 @@ export function ProfileDetailPage() {
               <div className="border p-2 rounded">
                 <div className="text-gray-500">Engagements</div>
                 <div className="font-semibold">
-                  {formatEngagementRate(user.engagement_rate)}
+                  {formatFollowersDetail(user.engagements)}
                 </div>
               </div>
             )}
@@ -142,6 +160,7 @@ export function ProfileDetailPage() {
             <a
               href={user.url}
               target="_blank"
+              rel="noopener noreferrer"
               className="inline-block mt-4 text-blue-600 text-sm"
             >
               View on platform →
