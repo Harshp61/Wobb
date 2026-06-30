@@ -1,17 +1,13 @@
 import { useNavigate } from "react-router-dom";
 import type { Platform, UserProfileSummary } from "@/types";
 import { VerifiedBadge } from "./VerifiedBadge";
+import { formatFollowers } from "@/utils/formatters";
+import { useInfluencerStore } from "@/store/useInfluencerStore";
 
 interface ProfileCardProps {
   profile: UserProfileSummary;
   platform: Platform;
   searchQuery: string;
-}
-
-function formatFollowersLocal(count: number) {
-  if (count >= 1000000) return (count / 1000000).toFixed(1) + "M followers";
-  if (count >= 1000) return (count / 1000).toFixed(0) + "K followers";
-  return count + " followers";
 }
 
 export function ProfileCard({
@@ -20,9 +16,21 @@ export function ProfileCard({
   searchQuery,
 }: ProfileCardProps) {
   const navigate = useNavigate();
+  const { selectedProfiles, addProfile, removeProfile } = useInfluencerStore();
+
+  const isSelected = selectedProfiles.some((p) => p.user_id === profile.user_id);
 
   const handleClick = () => {
     navigate(`/profile/${profile.username}?platform=${platform}`);
+  };
+
+  const handleToggleList = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (isSelected) {
+      removeProfile(profile.user_id);
+    } else {
+      addProfile(profile);
+    }
   };
 
   return (
@@ -42,17 +50,20 @@ export function ProfileCard({
           <VerifiedBadge verified={profile.is_verified} />
         </div>
         <div className="text-sm text-gray-600">{profile.fullname}</div>
-        <div className="text-sm">{formatFollowersLocal(profile.followers)}</div>
+        <div className="text-sm">{formatFollowers(profile.followers)}</div>
       </div>
-      {/* TODO: candidates must implement Add to List feature */}
-      {/* TODO: candidates must implement Add to List feature */}
       <button
-        disabled
-        className="px-3 py-1 bg-gray-300 text-gray-500 text-sm rounded cursor-not-allowed"
-        onClick={(e) => e.stopPropagation()}
+        type="button"
+        onClick={handleToggleList}
+        className={`px-3 py-1 text-sm rounded font-medium transition-colors ${
+          isSelected
+            ? "bg-red-600 hover:bg-red-700 text-white"
+            : "bg-gray-800 hover:bg-gray-900 text-white"
+        }`}
       >
-        Add to List
+        {isSelected ? "Remove" : "Add to List"}
       </button>
     </div>
   );
 }
+

@@ -1,5 +1,11 @@
+/**
+ * Supported platforms in the application
+ */
 export type Platform = "instagram" | "youtube" | "tiktok";
 
+/**
+ * Summary of a user profile retrieved from search listings
+ */
 export interface UserProfileSummary {
   user_id: string;
   username: string;
@@ -14,6 +20,9 @@ export interface UserProfileSummary {
   avg_views?: number;
 }
 
+/**
+ * A single account wrapper returned in searches
+ */
 export interface SearchAccount {
   account: {
     user_profile: UserProfileSummary;
@@ -21,13 +30,19 @@ export interface SearchAccount {
   };
 }
 
+/**
+ * Platform search response format
+ */
 export interface SearchData {
   total: number;
   accounts: SearchAccount[];
 }
 
+/**
+ * Detailed user profile model containing full stats
+ */
 export interface FullUserProfile extends UserProfileSummary {
-  type?: string;
+  type?: Platform;
   description?: string;
   is_business?: boolean;
   posts_count?: number;
@@ -38,6 +53,9 @@ export interface FullUserProfile extends UserProfileSummary {
   age_group?: string;
 }
 
+/**
+ * Detailed profile load response format
+ */
 export interface ProfileDetailResponse {
   cached?: boolean;
   data: {
@@ -45,3 +63,4 @@ export interface ProfileDetailResponse {
     user_profile: FullUserProfile;
   };
 }
+

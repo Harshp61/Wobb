@@ -1,6 +1,6 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import { SearchPage } from "@/pages/SearchPage";
-import { ProfileDetailPage } from "@/pages/ProfileDetailPage";
+import { SearchPage } from "@/components/pages/SearchPage";
+import { ProfileDetailPage } from "@/components/pages/ProfileDetailPage";
 
 function App() {
   return (
