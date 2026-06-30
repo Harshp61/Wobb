@@ -28,7 +28,7 @@ const detailProfilesByUrl = new Map<string, ProfileImageSource>();
 const profilePictureOverridesByUserId = new Map<string, string>([
   [
     "UCq-Fj5jknLsUf-MWSy4_brA",
-    "https://imgs.search.brave.com/Uqwy-uDi-JtXDXCIqfv4kgY2M09sv843FXltpZDz-cQ/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9sb2dv/Lmx1c2hhLmNvL2Qv/Y29tcGFueV8yOTA1/Njg1NV9sb2dvLmpw/Zw",
+    "https://yt3.googleusercontent.com/VunTf0NzCeboiPjbesBdnQuxaF3Lja7UGRbBGQAWRJgMSTj9TTLO3pS1X9qPOJGCNnmPrXeY=s160-c-k-c0x00ffffff-no-rj",
   ],
   [
     "UCFFbwnve3yF62-tVXkTyHqg",
