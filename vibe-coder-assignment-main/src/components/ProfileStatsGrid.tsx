@@ -8,7 +8,7 @@ interface ProfileStatsGridProps {
 
 export function ProfileStatsGrid({ user }: ProfileStatsGridProps) {
   return (
-    <div className="mt-4 grid grid-cols-2 gap-3 text-sm">
+    <div className="mt-6 grid grid-cols-2 md:grid-cols-3 gap-4">
       <StatCard label="Followers" value={formatCompactNumber(user.followers, 2)} />
       <StatCard label="Engagement Rate" value={formatEngagementRate(user.engagement_rate)} />
       

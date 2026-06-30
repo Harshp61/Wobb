@@ -4,7 +4,7 @@ interface ProfileAvatarProps {
   src: string | undefined;
   alt: string;
   name: string;
-  size?: "sm" | "md" | "lg";
+  size?: "sm" | "md" | "lg" | "xl";
   className?: string;
 }
 
@@ -30,7 +30,8 @@ function getInitials(name: string): string {
 const sizeMap = {
   sm: "w-8 h-8 text-xs",
   md: "w-12 h-12 text-sm",
-  lg: "w-24 h-24 text-2xl",
+  lg: "w-16 h-16 text-lg",
+  xl: "w-32 h-32 text-4xl",
 } as const;
 
 /**

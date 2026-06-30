@@ -10,24 +10,25 @@ export function useProfile(username: string | undefined) {
   const [profileData, setProfileData] = useState<ProfileDetailResponse | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [prevUsername, setPrevUsername] = useState<string | undefined>(undefined);
-
-  // Reset state during render if username changes
-  if (username !== prevUsername) {
-    setPrevUsername(username);
-    setProfileData(null);
-    setIsLoading(!!username);
-    setError(null);
-  }
 
   useEffect(() => {
-    if (!username) return;
-
     let cancelled = false;
 
-    loadProfileByUsername(username)
-      .then((data) => {
+    const loadProfile = async () => {
+      if (!username) {
+        setProfileData(null);
+        setIsLoading(false);
+        setError(null);
+        return;
+      }
+
+      setIsLoading(true);
+      setError(null);
+
+      try {
+        const data = await loadProfileByUsername(username);
         if (cancelled) return;
+        
         if (data) {
           setProfileData(data);
           setError(null);
@@ -35,14 +36,18 @@ export function useProfile(username: string | undefined) {
           setProfileData(null);
           setError(`Could not find profile for ${username}`);
         }
-        setIsLoading(false);
-      })
-      .catch((err) => {
+      } catch (err) {
         if (cancelled) return;
         setProfileData(null);
         setError(err instanceof Error ? err.message : String(err));
-        setIsLoading(false);
-      });
+      } finally {
+        if (!cancelled) {
+          setIsLoading(false);
+        }
+      }
+    };
+
+    loadProfile();
 
     return () => {
       cancelled = true;
