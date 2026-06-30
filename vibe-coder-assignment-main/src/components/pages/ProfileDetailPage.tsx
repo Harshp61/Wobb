@@ -1,6 +1,7 @@
 import { Link, useParams, useSearchParams } from "react-router-dom";
 import { Layout } from "@/components/Layout";
 import { VerifiedBadge } from "@/components/VerifiedBadge";
+import { ProfileAvatar } from "@/components/ProfileAvatar";
 import { ProfileStatsGrid } from "@/components/ProfileStatsGrid";
 import { useProfile } from "@/hooks/useProfile";
 import { useInfluencerStore } from "@/store/useInfluencerStore";
@@ -61,10 +62,12 @@ export function ProfileDetailPage() {
       </Link>
 
       <div className="flex gap-6 items-start text-left max-w-2xl mx-auto">
-        <img
+        <ProfileAvatar
           src={user.picture}
           alt={`${user.fullname} profile`}
-          className="w-24 h-24 rounded-full border"
+          name={user.fullname}
+          size="lg"
+          className="border"
         />
         <div className="flex-1">
           <h2 className="text-xl font-bold">

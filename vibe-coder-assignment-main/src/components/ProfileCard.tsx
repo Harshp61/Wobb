@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import type { Platform, UserProfileSummary } from "@/types";
 import { VerifiedBadge } from "./VerifiedBadge";
+import { ProfileAvatar } from "./ProfileAvatar";
 import { formatFollowers } from "@/utils/formatters";
 import { useInfluencerStore } from "@/store/useInfluencerStore";
 
@@ -39,10 +40,11 @@ export function ProfileCard({
       className="flex items-center gap-3 p-3 border border-gray-300 mb-2 cursor-pointer hover:bg-gray-50 w-[700px]"
       data-search={searchQuery}
     >
-      <img
+      <ProfileAvatar
         src={profile.picture}
         alt={`${profile.fullname} profile`}
-        className="w-12 h-12 rounded-full"
+        name={profile.fullname}
+        size="md"
       />
       <div className="text-left flex-1">
         <div className="font-bold">

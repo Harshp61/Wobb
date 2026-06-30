@@ -1,5 +1,6 @@
 import { useInfluencerStore } from '@/store/useInfluencerStore';
 import { useNavigate } from 'react-router-dom';
+import { ProfileAvatar } from './ProfileAvatar';
 import type { UserProfileSummary } from '@/types';
 
 export function SelectedList() {
@@ -24,7 +25,7 @@ export function SelectedList() {
           onClick={() => navigate(`/profile/${profile.username}?platform=instagram`)}
         >
           <div className="flex items-center gap-3">
-            <img src={profile.picture} alt={profile.fullname} className="w-8 h-8 rounded-full" />
+            <ProfileAvatar src={profile.picture} alt={profile.fullname} name={profile.fullname} size="sm" />
             <span>@{profile.username}</span>
           </div>
           <button
