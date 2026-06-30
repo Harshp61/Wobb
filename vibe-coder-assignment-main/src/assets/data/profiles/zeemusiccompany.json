@@ -1,0 +1,25 @@
+{
+  "cached": true,
+  "data": {
+    "success": true,
+    "user_profile": {
+      "type": "youtube",
+      "user_id": "UCFFbwnve3yF62-tVXkTyHqg",
+      "username": "zeemusiccompany",
+      "custom_name": "zeemusiccompany",
+      "handle": "zeemusiccompany",
+      "url": "https://www.youtube.com/@zeemusiccompany",
+      "picture": "http://yt3.googleusercontent.com/zGnrFUqmF6Xp2tM8ecG9sVXyHjJUrqa7GnNV_kATAdAvSwfgIg7693GURHASA7C6OPK3YmGZ=s160-c-k-c0x00ffffff-no-rj",
+      "fullname": "Zee Music Company",
+      "description": "Indian music label and film music channel",
+      "is_verified": true,
+      "is_business": true,
+      "followers": 99700000,
+      "posts_count": 0,
+      "engagements": 20112,
+      "engagement_rate": 0.00020172517552657975,
+      "avg_likes": 20112,
+      "avg_views": 931311
+    }
+  }
+}

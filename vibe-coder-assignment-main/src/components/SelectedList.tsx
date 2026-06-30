@@ -2,6 +2,7 @@ import { useInfluencerStore } from '@/store/useInfluencerStore';
 import { useNavigate } from 'react-router-dom';
 import { ProfileAvatar } from './ProfileAvatar';
 import type { UserProfileSummary } from '@/types';
+import { getProfileDescriptionText } from '@/utils/profileContent';
 
 export function SelectedList() {
   const { selectedProfiles, removeProfile } = useInfluencerStore();
@@ -39,7 +40,10 @@ export function SelectedList() {
                 size="sm" 
                 className="ring-2 ring-purple-100 dark:ring-purple-900/50"
               />
-              <span className="font-medium text-gray-900 dark:text-gray-100 truncate">@{profile.username}</span>
+              <div className="min-w-0 flex-1">
+                <span className="font-medium text-gray-900 dark:text-gray-100 truncate">@{profile.username}</span>
+                <p className="text-sm text-gray-500 dark:text-gray-400 truncate">{getProfileDescriptionText(profile, profile.type)}</p>
+              </div>
             </div>
             <button
               type="button"

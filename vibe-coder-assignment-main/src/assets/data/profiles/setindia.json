@@ -1,0 +1,25 @@
+{
+  "cached": true,
+  "data": {
+    "success": true,
+    "user_profile": {
+      "type": "youtube",
+      "user_id": "UCpEhnqL0y41EpW2TvWAHD7Q",
+      "username": "setindia",
+      "custom_name": "SETIndia",
+      "handle": "SETIndia",
+      "url": "https://www.youtube.com/@SETIndia",
+      "picture": "https://yt3.googleusercontent.com/vmmZsYmryt238vqck4KAYf69gOSu22ZfqVE3rwT1tYz4hr68xl7crIUK7kghQgR6RiB9IlQ5mQ=s160-c-k-c0x00ffffff-no-rj",
+      "fullname": "SET India",
+      "description": "Sony Entertainment Television India's official YouTube channel",
+      "is_verified": true,
+      "is_business": true,
+      "followers": 181000000,
+      "posts_count": 0,
+      "engagements": 23667,
+      "engagement_rate": 0.00013075690607734808,
+      "avg_likes": 23667,
+      "avg_views": 1428882
+    }
+  }
+}

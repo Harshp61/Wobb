@@ -4,6 +4,7 @@ import { VerifiedBadge } from "./VerifiedBadge";
 import { ProfileAvatar } from "./ProfileAvatar";
 import { formatFollowers } from "@/utils/formatters";
 import { useInfluencerStore } from "@/store/useInfluencerStore";
+import { getProfileDescriptionText } from "@/utils/profileContent";
 
 interface ProfileCardProps {
   profile: UserProfileSummary;
@@ -18,6 +19,7 @@ export function ProfileCard({
   const { selectedProfiles, addProfile, removeProfile } = useInfluencerStore();
 
   const isSelected = selectedProfiles.some((p) => p.user_id === profile.user_id);
+  const shortDescription = getProfileDescriptionText(profile, profile.type);
 
   const handleClick = () => {
     navigate(`/profile/${profile.username}`);
@@ -60,6 +62,7 @@ export function ProfileCard({
           <VerifiedBadge verified={profile.is_verified} />
         </div>
         <div className="text-sm text-gray-600 dark:text-gray-400 mb-1 truncate">{profile.fullname}</div>
+        <p className="text-sm text-gray-500 dark:text-gray-400 mb-2 line-clamp-2">{shortDescription}</p>
         <div className="flex items-center gap-2">
           <span className="text-sm font-semibold text-purple-600 dark:text-purple-400">{formatFollowers(profile.followers)}</span>
           <span className="text-xs text-gray-400">followers</span>

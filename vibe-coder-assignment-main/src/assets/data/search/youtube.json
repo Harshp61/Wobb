@@ -64,7 +64,7 @@
                     "username": "setindia",
                     "custom_name": "setindia",
                     "handle": "SETIndia",
-                    "url": "https://www.youtube.com/channel/UCpEhnqL0y41EpW2TvWAHD7Q",
+                    "url": "https://www.youtube.com/@SETIndia",
                     "picture": "https://yt3.googleusercontent.com/eu051krrRNQMMi5h6ynfnvhFJzxzSKulJQ42g5v72MQ9Bvv8KdpNIa6yM-0iGpnDgSF0itAD=s480-c-k-c0x00ffffff-no-rj",
                     "fullname": "SET India",
                     "is_verified": true,
@@ -138,7 +138,7 @@
                     "user_id": "UCFFbwnve3yF62-tVXkTyHqg",
                     "username": "zeemusiccompany",
                     "handle": "zeemusiccompany",
-                    "url": "https://www.youtube.com/channel/UCFFbwnve3yF62-tVXkTyHqg",
+                    "url": "https://www.youtube.com/@zeemusiccompany",
                     "picture": "https://yt3.googleusercontent.com/5ozNNrQBUJY8TPt2BYo6fEL-07ilkWHVedWCGFjtvuHU0aYrg1Iop-LJvprodA1_9-MTv7G_YA=s480-c-k-c0x00ffffff-no-rj",
                     "fullname": "Zee Music Company",
                     "is_verified": true,
@@ -189,3 +189,4 @@
         }
     ]
 }
+

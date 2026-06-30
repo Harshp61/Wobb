@@ -5,6 +5,7 @@ import { ProfileAvatar } from "@/components/ProfileAvatar";
 import { ProfileStatsGrid } from "@/components/ProfileStatsGrid";
 import { useProfile } from "@/hooks/useProfile";
 import { useInfluencerStore } from "@/store/useInfluencerStore";
+import { getProfileDescriptionText } from "@/utils/profileContent";
 
 export function ProfileDetailPage() {
   const { username } = useParams<{ username: string }>();
@@ -58,6 +59,7 @@ export function ProfileDetailPage() {
 
   const user = profileData.data.user_profile;
   const isSelected = selectedProfiles.some((p) => p.user_id === user.user_id);
+  const displayDescription = getProfileDescriptionText(user, user.type);
 
   const handleToggleList = () => {
     if (isSelected) {
@@ -137,8 +139,8 @@ export function ProfileDetailPage() {
                 </button>
               </div>
 
-              {user.description && (
-                <p className="mt-4 text-gray-700 dark:text-gray-300 leading-relaxed">{user.description}</p>
+              {displayDescription && (
+                <p className="mt-4 text-gray-700 dark:text-gray-300 leading-relaxed">{displayDescription}</p>
               )}
 
               <ProfileStatsGrid user={user} />

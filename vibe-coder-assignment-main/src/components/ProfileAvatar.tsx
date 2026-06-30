@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface ProfileAvatarProps {
   src: string | undefined;
@@ -46,6 +46,10 @@ export function ProfileAvatar({
   className = "",
 }: ProfileAvatarProps) {
   const [imgError, setImgError] = useState(false);
+
+  useEffect(() => {
+    setImgError(false);
+  }, [src]);
 
   const sizeClass = sizeMap[size];
 
