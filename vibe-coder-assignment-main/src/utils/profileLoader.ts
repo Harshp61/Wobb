@@ -14,8 +14,12 @@ export async function loadProfileByUsername(
     return null;
   }
 
-  const result = await loader();
-  const data =
-    (result as { default?: ProfileDetailResponse }).default ?? result;
-  return data as ProfileDetailResponse;
+  try {
+    const result = await loader();
+    const data =
+      (result as { default?: ProfileDetailResponse }).default ?? result;
+    return data as ProfileDetailResponse;
+  } catch (error) {
+    return null;
+  }
 }

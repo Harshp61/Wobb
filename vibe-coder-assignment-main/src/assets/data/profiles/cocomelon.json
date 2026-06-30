@@ -1,0 +1,26 @@
+{
+  "cached": true,
+  "data": {
+    "success": true,
+    "user_profile": {
+      "type": "youtube",
+      "user_id": "UCbCmjCuTUZos6Inko4u57UQ",
+      "username": "cocomelon",
+      "custom_name": "CoComelon",
+      "handle": "CoComelon",
+      "url": "https://www.youtube.com/channel/UCbCmjCuTUZos6Inko4u57UQ",
+      "picture": "https://yt3.googleusercontent.com/ytc/AIdro_mR-I4TDlJI7Rc2jwF0cZf6uMnzDpkRggMK4zGOi4eOndY=s480-c-k-c0x00ffffff-no-rj",
+      "fullname": "Cocomelon - Nursery Rhymes",
+      "description": "Kids songs and nursery rhymes",
+      "is_verified": false,
+      "is_business": true,
+      "followers": 184000000,
+      "posts_count": 1000,
+      "engagements": 124944,
+      "engagement_rate": 0.0006790434782608695,
+      "avg_likes": 50000,
+      "avg_comments": 10000,
+      "avg_views": 8662494
+    }
+  }
+}
