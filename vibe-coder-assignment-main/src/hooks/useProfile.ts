@@ -14,40 +14,36 @@ export function useProfile(username: string | undefined) {
   useEffect(() => {
     let cancelled = false;
 
-    const loadProfile = async () => {
-      if (!username) {
-        setProfileData(null);
-        setIsLoading(false);
-        setError(null);
-        return;
-      }
-
-      setIsLoading(true);
+    if (!username) {
+      setProfileData(null);
+      setIsLoading(false);
       setError(null);
+      return;
+    }
 
-      try {
-        const data = await loadProfileByUsername(username);
-        if (cancelled) return;
-        
-        if (data) {
-          setProfileData(data);
-          setError(null);
-        } else {
-          setProfileData(null);
-          setError(`Could not find profile for ${username}`);
-        }
-      } catch (err) {
-        if (cancelled) return;
+    setIsLoading(true);
+    setError(null);
+
+    try {
+      const data = loadProfileByUsername(username);
+      if (cancelled) return;
+      
+      if (data) {
+        setProfileData(data);
+        setError(null);
+      } else {
         setProfileData(null);
-        setError(err instanceof Error ? err.message : String(err));
-      } finally {
-        if (!cancelled) {
-          setIsLoading(false);
-        }
+        setError(`Could not find profile for ${username}`);
       }
-    };
-
-    loadProfile();
+    } catch (err) {
+      if (cancelled) return;
+      setProfileData(null);
+      setError(err instanceof Error ? err.message : String(err));
+    } finally {
+      if (!cancelled) {
+        setIsLoading(false);
+      }
+    }
 
     return () => {
       cancelled = true;

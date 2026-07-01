@@ -1,12 +1,13 @@
 import type { ProfileDetailResponse } from "@/types";
 
 const profileModules = import.meta.glob<ProfileDetailResponse>(
-  "../assets/data/profiles/*.json"
+  "../assets/data/profiles/*.json",
+  { eager: true }
 );
 
-export async function loadProfileByUsername(
+export function loadProfileByUsername(
   username: string
-): Promise<ProfileDetailResponse | null> {
+): ProfileDetailResponse | null {
   const path = `../assets/data/profiles/${username}.json`;
   const loader = profileModules[path];
 
@@ -15,7 +16,7 @@ export async function loadProfileByUsername(
   }
 
   try {
-    const result = await loader();
+    const result = loader as { default?: ProfileDetailResponse } | ProfileDetailResponse;
     const data =
       (result as { default?: ProfileDetailResponse }).default ?? result;
     return data as ProfileDetailResponse;
